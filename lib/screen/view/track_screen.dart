@@ -15,11 +15,10 @@ class Track_Screen extends StatefulWidget {
 class _Track_ScreenState extends State<Track_Screen> {
   Trackcontroller trackcontroller = Get.put(Trackcontroller());
 
-
   void initState() {
     // TODO: implement initState
     super.initState();
-   trackcontroller.permission();
+    trackcontroller.permission();
   }
 
   @override
@@ -73,9 +72,21 @@ class _Track_ScreenState extends State<Track_Screen> {
                   child: Text("Adderss"),
                 ),
                 Obx(
-                      () => Text(trackcontroller.plceList.value.isEmpty?" " :"${trackcontroller.plceList[0]}"),
+                  () => Container(
+                    child: Text(trackcontroller.plceList.value.isEmpty
+                        ? " "
+                        : "${trackcontroller.plceList[0]}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                  ),
                 ),
+                SizedBox(height: 40,),
+                FloatingActionButton.extended(
+                  onPressed: () {
+                    Get.toNamed('MapScreen');
+                  },
+                  label: Text("loacation"),
 
+                  icon: Icon(Icons.location_on_rounded),
+                ),
               ],
             ),
           ),
